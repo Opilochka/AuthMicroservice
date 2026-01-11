@@ -39,5 +39,10 @@
         /// Признак блокировки аккаунта
         /// </summary>
         public bool IsLocked { get; set; }
+
+        /// <summary>
+        /// Связь: токены обновления
+        /// </summary>
+        public ICollection<RefreshToken> RefreshTokens { get; set; } = [];
     }
 }
