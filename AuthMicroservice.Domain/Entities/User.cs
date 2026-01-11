@@ -44,5 +44,10 @@
         /// Связь: токены обновления
         /// </summary>
         public ICollection<RefreshToken> RefreshTokens { get; set; } = [];
+
+        /// <summary>
+        /// Связь: назначенные роли
+        /// </summary>
+        public ICollection<Role> Roles { get; set; } = [];
     }
 }
