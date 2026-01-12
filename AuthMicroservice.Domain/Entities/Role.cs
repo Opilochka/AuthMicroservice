@@ -23,6 +23,6 @@
         /// <summary>
         /// Связь: пользователи с этой ролью
         /// </summary>
-        public ICollection<User> Users { get; set; } = [];
+        public ICollection<UserRole> UserRoles { get; set; } = [];
     }
 }

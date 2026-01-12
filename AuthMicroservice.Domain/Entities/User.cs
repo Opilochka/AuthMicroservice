@@ -48,6 +48,6 @@
         /// <summary>
         /// Связь: назначенные роли
         /// </summary>
-        public ICollection<Role> Roles { get; set; } = [];
+        public ICollection<UserRole> UserRoles { get; set; } = [];
     }
 }
