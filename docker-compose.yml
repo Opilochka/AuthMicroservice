@@ -1,0 +1,35 @@
+services:
+  auth-db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: auth
+      POSTGRES_USER: auth_user
+      POSTGRES_PASSWORD: secure_password_123
+    ports:
+      - "5432:5432"
+    volumes:
+      - auth_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U auth_user -d auth"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  authmicroservice.api:
+    image: ${DOCKER_REGISTRY-}authmicroserviceapi
+    build:
+      context: .
+      dockerfile: AuthMicroservice.Api/Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      ConnectionString_AuthDb: "Host=auth-db;Database=auth;Username=auth_user;Password=secure_password_123"
+    depends_on:
+      auth-db:
+        condition: service_healthy
+    restart: on-failure
+
+volumes:
+  auth-pg:
