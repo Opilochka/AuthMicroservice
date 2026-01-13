@@ -32,4 +32,4 @@ services:
     restart: on-failure
 
 volumes:
-  auth-pg:
+  auth_pg:
